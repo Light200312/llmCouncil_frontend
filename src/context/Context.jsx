@@ -12,13 +12,23 @@ const ContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
 
+
+  const delayPara = (index, word) => {
+    setTimeout(function () {
+      setResultData(prev => prev + word);
+    }, 50 * index)
+
+  }
+
+
   // 🔹 send prompt to Gemini (via backend)
   const onSent = async (prompt) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
-    setRecentPrompt(input);
-    setPrevPrompts((prev) => [...prev, prompt]);
+
+    setRecentPrompt(prompt);
+
 
     try {
       const res = await fetch("http://localhost:3000/api/chat", {
@@ -28,7 +38,13 @@ const ContextProvider = ({ children }) => {
       });
 
       const data = await res.json();
-      setResultData(data.reply);
+      setResultData("");
+      const words = data.reply.split(" ");
+      words.forEach((word, index) => {
+        delayPara(index, word + " ");
+      });
+
+      setPrevPrompts((prev) => [...prev, { prompt, response: data.reply }]);
     } catch (err) {
       setResultData("Something went wrong. Please try again.");
     }
@@ -45,12 +61,20 @@ const ContextProvider = ({ children }) => {
     setInput("");
   };
 
+  const openRecentChat = (chat) => {
+    setShowResult(true);
+    setRecentPrompt(chat.prompt);
+    setResultData(chat.response);
+  };
+
+
   // 🔹 values shared to components
   const value = {
     prevPrompts,
     setPrevPrompts,
     onSent,
     setRecentPrompt,
+    openRecentChat,
     recentPrompt,
     showResult,
     loading,

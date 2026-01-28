@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import './Main.css'
 import { Context } from '../../context/Context'
+import ReactMarkdown from "react-markdown";
+
 
 const Main = () => {
     const {
@@ -62,7 +64,17 @@ console.log("🧪 resultData:", resultData);
                         </div>
                         <div className="result-data">
                             <img src="/src/assets/gemini_icon.png" alt="" />
-                            <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+                            {loading?
+                            <div className='loader'>
+                                <hr />
+                                <hr />
+                                <hr />
+                            </div>
+                            :<ReactMarkdown>{resultData}</ReactMarkdown>
+                            }
+                            
+
+
                         </div>
 
                     </div>
@@ -75,7 +87,7 @@ console.log("🧪 resultData:", resultData);
                         <div>
                             <img src="/src/assets/gallery_icon.png" alt="" />
                             <img src="/src/assets/mic_icon.png" alt="" />
-                            <img
+                            {input?<img
                                 src="/src/assets/send_icon.png"
                                 alt=""
                                 onClick={() => {
@@ -85,7 +97,7 @@ console.log("🧪 resultData:", resultData);
                                         onSent(input);
                                     }
                                 }}
-                            />
+                            />:null}
 
 
                         </div>
