@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { callOpenRouter } from "../utils/openrouter.js";
 
 export const Context = createContext();
 
@@ -11,6 +12,8 @@ const ContextProvider = ({ children }) => {
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
+  const [image, setImage] = useState(null);
+
 
 
   const delayPara = (index, word) => {
@@ -21,7 +24,7 @@ const ContextProvider = ({ children }) => {
   }
 
 
-  // 🔹 send prompt to Gemini (via backend)
+  // 🔹 send prompt to OpenRouter API
   const onSent = async (prompt) => {
     setResultData("");
     setLoading(true);
@@ -29,28 +32,24 @@ const ContextProvider = ({ children }) => {
 
     setRecentPrompt(prompt);
 
-
     try {
-      const res = await fetch("http://localhost:3000/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
-      });
+      const reply = await callOpenRouter(prompt,image);
 
-      const data = await res.json();
       setResultData("");
-      const words = data.reply.split(" ");
+      const words = reply.split(" ");
       words.forEach((word, index) => {
         delayPara(index, word + " ");
       });
 
-      setPrevPrompts((prev) => [...prev, { prompt, response: data.reply }]);
+      setPrevPrompts((prev) => [...prev, { prompt, response: reply }]);
     } catch (err) {
-      setResultData("Something went wrong. Please try again.");
+      console.error("❌ OpenRouter error:", err);
+      setResultData(err.message || "Something went wrong. Please try again.");
     }
 
     setLoading(false);
     setInput("");
+    setImage(null);
   };
 
   // 🔹 start new chat
@@ -82,6 +81,9 @@ const ContextProvider = ({ children }) => {
     input,
     setInput,
     newChat,
+    image,
+    setImage,
+
   };
 
   return (

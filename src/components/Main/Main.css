@@ -31,25 +31,53 @@
 
 /* GREETING */
 .greet {
-    margin-top: 40px;
+    margin-top: 50px;
+    animation: fadeUp 0.6s ease-out;
 }
 
+/* Hello, Suraj */
 .greet p:first-child {
-    font-size: 32px;
-    font-weight: 500;
+    font-size: 38px;          /* bigger */
+    font-weight: 600;
+    letter-spacing: -0.6px;
 }
 
 .greet span {
-    background: linear-gradient(90deg, #4285f4, #9b72cb);
+    background: linear-gradient(90deg, #4285f4, #9b72cb, #34a853);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     color: transparent;
+    animation: gradientMove 4s linear infinite;
 }
 
+/* 👇 How can I help you today */
 .greet p:last-child {
-    font-size: 18px;
-    color: #666;
-    margin-top: 6px;
+    font-size: 24px;          /* BIGGER text */
+    font-weight: 500;
+    color: #444;
+    margin-top: 14px;
+    line-height: 1.4;
 }
+
+/* Animations */
+@keyframes gradientMove {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 
 /* CARDS GRID */
 .cards {
@@ -101,13 +129,13 @@
 
 .search-box{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    flex-direction: column;   /* 🔥 allow image preview above input */
+    gap: 10px;
     background-color: #f0f4f9;
-    padding: 10px 20px;
-    border-radius: 50px;
+    padding: 15px 20px;
+    border-radius: 20px;
 }
+
 
 .search-box img{
     width: 24px;
@@ -128,6 +156,64 @@
     align-items: center;
     gap: 15px;
 }
+
+.image-preview-container {
+    display: flex;
+    gap: 10px;
+    padding: 0 5px;
+}
+
+.image-preview {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    width: fit-content;
+}
+
+.image-preview img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.image-preview img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ff4757;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.remove-image-btn:hover {
+    background: #ff3838;
+    transform: scale(1.1);
+}
+
+.remove-image-btn:active {
+    transform: scale(0.95);
+}
+
 
 .bottom-info{
     font-size: 13px;
