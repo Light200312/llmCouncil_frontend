@@ -16,11 +16,10 @@ const ContextProvider = ({ children }) => {
 
 
 
-  const delayPara = (index, word) => {
+  const delayPara = (index, character) => {
     setTimeout(function () {
-      setResultData(prev => prev + word);
-    }, 50 * index)
-
+      setResultData(prev => prev + character);
+    }, 15 * index)
   }
 
 
@@ -36,9 +35,10 @@ const ContextProvider = ({ children }) => {
       const reply = await callOpenRouter(prompt,image);
 
       setResultData("");
-      const words = reply.split(" ");
-      words.forEach((word, index) => {
-        delayPara(index, word + " ");
+      // Split by character instead of word to preserve markdown formatting
+      const characters = reply.split("");
+      characters.forEach((char, index) => {
+        delayPara(index, char);
       });
 
       setPrevPrompts((prev) => [...prev, { prompt, response: reply }]);

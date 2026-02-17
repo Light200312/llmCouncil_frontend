@@ -4,10 +4,10 @@ import Main from './components/Main/Main'
 
 const App = () => {
   return (
-   <>
-   <Sidebar/>
-   <Main />
-   </>
+    <div className='flex w-full h-screen'>
+      <Sidebar/>
+      <Main />
+    </div>
   )
 }
 
