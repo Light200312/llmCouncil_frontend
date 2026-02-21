@@ -85,7 +85,7 @@ const Main = () => {
 
 
     const speakText = (text) => {
-        
+
         if (!window.speechSynthesis) return;
 
         if (speechSynthesis.speaking) {
@@ -115,8 +115,8 @@ const Main = () => {
 
 
     return (
-        <div className="flex-1 h-screen bg-white dark:bg-slate-950 dark:text-gray-100 flex flex-col">
-            <div className="flex items-center justify-between font-semibold text-xl md:text-2xl p-4 md:p-6 md:pr-2.5 text-gray-500 dark:text-gray-300">
+        <div className="flex-1 h-screen bg-base-100 text-base-content flex flex-col">
+            <div className="flex items-center justify-between font-semibold text-xl md:text-2xl p-4 md:p-6 md:pr-2.5 text-base-content ">
                 <p>LLM Council</p>
                 <User size={32} className="md:w-9 rounded-full" />
             </div>
@@ -126,65 +126,106 @@ const Main = () => {
                         <>
                             <div className="mt-8 md:mt-12 animate-fadeUp">
                                 <p><span className="text-3xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 bg-clip-text text-transparent animate-gradient">Hello, User.</span></p>
-                                <p className="text-xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mt-2 md:mt-3.5 leading-relaxed">How can <span className="text-blue-500">We</span> help you today?</p>
+                                <p className="text-xl md:text-3xl font-medium text-base-content  mt-2 md:mt-3.5 leading-relaxed">How can <span className="text-blue-500">We</span> help you today?</p>
                             </div>
                             {/* input suggestions */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 mt-8 md:mt-12 pb-80">
-                                <div 
+                                <div
                                     onClick={() => onSent("Suggest beautiful places to see in an upcoming road trip")}
-                                    className="bg-gray-100 dark:bg-slate-800 rounded-2xl p-4 md:p-5 min-h-32 flex flex-col justify-between cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-700 transition">
-                                    <p className="text-sm md:text-base text-gray-800 dark:text-gray-200 leading-relaxed">Suggest beautiful places to see in an upcoming road trip</p>
-                                    <Compass size={24} className="opacity-80" />
+                                    className="card bg-base-100 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:ring-2 hover:ring-primary/30 transition-all duration-300 cursor-pointer border border-base-300"
+                                >
+                                    <div className="card-body">
+                                        <p className="text-base font-medium">
+                                            Suggest beautiful places to see in an upcoming road trip
+                                        </p>
+                                    </div>
                                 </div>
-                                <div 
+                                {/* <div
                                     onClick={() => onSent("Briefly summarize this concept: urban planning")}
-                                    className="bg-gray-100 dark:bg-slate-800 rounded-2xl p-4 md:p-5 min-h-32 flex flex-col justify-between cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-700 transition">
-                                    <p className="text-sm md:text-base text-gray-800 dark:text-gray-200 leading-relaxed">Briefly summarize this concept: urban planning</p>
+                                    className="bg-base-100 shadow-xl rounded-2xl p-4 md:p-5 min-h-32 flex flex-col justify-between cursor-pointer hover:bg-base-200gray-200  transition">
+                                    <p className="text-sm md:text-base text-base-content  leading-relaxed">Briefly summarize this concept: urban planning</p>
                                     <Lightbulb size={24} className="opacity-80" />
+                                </div> */}
+                                <div
+                                    onClick={() => onSent("Suggest beautiful places to see in an upcoming road trip")}
+                                    className="card bg-base-100 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:ring-2 hover:ring-primary/30 transition-all duration-300 cursor-pointer border border-base-300"
+                                >
+                                    <div className="card-body">
+                                        <p className="text-base font-medium">
+                                            Briefly summarize this concept: urban planning
+                                        </p>
+                                    </div>
                                 </div>
-                                <div 
+                                {/* <div
                                     onClick={() => onSent("Brainstorm team bonding activities for our work retreat")}
-                                    className="bg-gray-100 dark:bg-slate-800 rounded-2xl p-4 md:p-5 min-h-32 flex flex-col justify-between cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-700 transition">
-                                    <p className="text-sm md:text-base text-gray-800 dark:text-gray-200 leading-relaxed">Brainstorm team bonding activities for our work retreat</p>
-                                    <MessageCircle size={24} className="opacity-80" />
+                                    className="card bg-base-100 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-base-300"
+                                >
+                                    <div className="card-body">
+                                        <p className="text-base font-medium">
+                                            Brainstorm team bonding activities for our work retreat
+                                        </p>
+                                    </div>
+                                </div> */}
+                                <div
+                                    onClick={() => onSent("Suggest beautiful places to see in an upcoming road trip")}
+                                    className="card bg-base-100 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:ring-2 hover:ring-primary/30 transition-all duration-300 cursor-pointer border border-base-300"
+                                >
+                                    <div className="card-body">
+                                        <p className="text-base font-medium">
+                                            Brainstorm team bonding activities for our work retreat
+                                        </p>
+                                    </div>
                                 </div>
-                                <div 
+                                {/* <div
                                     onClick={() => onSent("Improve the readability of the following code")}
-                                    className="bg-gray-100 dark:bg-slate-800 rounded-2xl p-4 md:p-5 min-h-32 flex flex-col justify-between cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-700 transition">
-                                    <p className="text-sm md:text-base text-gray-800 dark:text-gray-200 leading-relaxed">Improve the readability of the following code</p>
-                                    <Code size={24} className="opacity-80" />
+                                    className="card bg-base-100 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-base-300"
+                                >
+                                    <div className="card-body">
+                                        <p className="text-base font-medium">
+                                            Improve the readability of the following code
+                                        </p>
+                                    </div>
+                                </div> */}
+                                <div
+                                    onClick={() => onSent("Suggest beautiful places to see in an upcoming road trip")}
+                                    className="card bg-base-100 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:ring-2 hover:ring-primary/30 transition-all duration-300 cursor-pointer border border-base-300"
+                                >
+                                    <div className="card-body">
+                                        <p className="text-base font-medium">
+                                            Improve the readability of the following code</p>
+                                    </div>
                                 </div>
                             </div>
                         </>
                         : <div className='py-4 md:py-5 px-6 md:px-32 pb-80 max-w-7xl mx-auto'>
                             <div className="my-8 md:my-10 flex items-center gap-4 md:gap-5">
                                 <User size={36} className="md:w-10 rounded-full" />
-                                <p className="text-sm md:text-base text-gray-700 dark:text-gray-300">{recentPrompt}</p>
+                                <p className="text-sm md:text-base text-base-content ">{recentPrompt}</p>
                             </div>
-                            <div className="flex w-fit  flex-col items-start gap-3 leading-relaxed text-sm md:text-base text-gray-800 dark:text-gray-200">
-                              
-                              <div className='flex gap-2'>
-                                 <button onClick={() => speakText(resultData)} className="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition mb-2 text-sm md:text-base">
-                                    {speaking ? "⏹ Stop" : "🔊 Speak"}
-                                </button>
+                            <div className="flex w-fit  flex-col items-start gap-3 leading-relaxed text-sm md:text-base text-base-content ">
 
-                                <Sparkles size={32} className="md:w-10" />
-                                </div>  
-                               
+                                <div className='flex gap-2'>
+                                    <button onClick={() => speakText(resultData)} className="px-4 py-2 bg-blue-500  text-white rounded-lg hover:bg-base-200blue-600  transition mb-2 text-sm md:text-base">
+                                        {speaking ? "⏹ Stop" : "🔊 Speak"}
+                                    </button>
+
+                                    <Sparkles size={32} className="md:w-10" />
+                                </div>
+
                                 {loading ? (
                                     <div className='w-full flex flex-col gap-4'>
-                                        <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded animate-pulse w-full"></div>
-                                        <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded animate-pulse w-3/4"></div>
-                                        <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded animate-pulse w-1/2"></div>
+                                        <div className="h-5 bg-gray-200  rounded animate-pulse w-full"></div>
+                                        <div className="h-5 bg-gray-200  rounded animate-pulse w-3/4"></div>
+                                        <div className="h-5 bg-gray-200  rounded animate-pulse w-1/2"></div>
                                     </div>
                                 ) : (
                                     /* ✅ FIXED MARKDOWN CONTAINER */
-                                    <div className="w-full prose prose-xl md:prose-2xl dark:prose-invert max-w-none 
-                                        prose-table:border prose-table:border-gray-300 dark:prose-table:border-gray-700
-                                        prose-th:bg-gray-100 dark:prose-th:bg-slate-800 prose-th:p-3
-                                        prose-td:p-3 prose-td:border-t prose-td:border-gray-200 dark:prose-td:border-gray-700
+                                    <div className="w-full prose prose-xl md:prose-2xl  max-w-none 
+                                        prose-table:border prose-table:border-gray-300 
+                                        prose-th:bg-base-200  prose-th:p-3
+                                        prose-td:p-3 prose-td:border-t prose-td:border-gray-200 
                                         prose-p:leading-loose prose-pre:bg-slate-900 prose-pre:p-4">
-                                        
+
                                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                                             {resultData}
                                         </ReactMarkdown>
@@ -196,16 +237,20 @@ const Main = () => {
                 </div>
             </div>
 
-            <div className="p-4 md:p-5 w-full">
-                <div className="flex flex-col gap-2 bg-gray-200 dark:bg-slate-800 p-3 md:p-4 rounded-3xl">
+            <div className="w-full flex flex-col items-center p-4 md:p-6">
+                <div className="bg-base-200 border border-base-300 rounded-2xl px-4 py-3 w-full max-w-2xl transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/40">
+
                     {image && (
-                        <div className="flex gap-2 p-1 overflow-x-auto">
-                            <div className="flex justify-start relative w-fit flex-shrink-0">
-                                <img src={image} alt="preview" className="w-28 h-28 md:w-32 md:h-32 object-cover rounded-2xl border-2 border-gray-300 dark:border-gray-600 shadow-md hover:scale-105 transition" />
+                        <div className="flex gap-2 mb-3">
+                            <div className="relative w-fit">
+                                <img
+                                    src={image}
+                                    alt="preview"
+                                    className="w-24 h-24 object-cover rounded-xl border border-base-300"
+                                />
                                 <button
-                                    className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-red-500 dark:bg-red-600 text-white cursor-pointer font-bold flex items-center justify-center hover:bg-red-600 dark:hover:bg-red-700 transition"
                                     onClick={() => setImage(null)}
-                                    title="Remove image"
+                                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-error text-white text-xs flex items-center justify-center hover:scale-110 transition"
                                 >
                                     ✕
                                 </button>
@@ -213,13 +258,13 @@ const Main = () => {
                         </div>
                     )}
 
-                    <div className="flex items-center gap-2 md:gap-3">
+                    <div className="flex items-center gap-3">
                         <input
-                            onChange={(e) => setInput(e.target.value)}
                             value={input}
+                            onChange={(e) => setInput(e.target.value)}
                             type="text"
-                            placeholder="Enter a prompt here"
-                            className="flex-1 bg-transparent border-none outline-none p-2 text-base md:text-lg dark:text-white dark:placeholder-gray-400"
+                            placeholder="Enter a prompt here..."
+                            className="flex-1 bg-transparent outline-none text-base-content placeholder:text-base-content/50"
                             onKeyDown={(e) => {
                                 if (e.key === "Enter" && input.trim()) {
                                     onSent(input);
@@ -227,42 +272,36 @@ const Main = () => {
                             }}
                         />
 
-                        <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-                            <label className="cursor-pointer hover:opacity-70 transition">
-                                <Image size={20} className="md:w-6" />
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    hidden
-                                    onChange={handleImageUpload}
-                                />
+                        <div className="flex items-center gap-3">
+                            <label className="cursor-pointer hover:text-primary transition">
+                                <Image size={20} />
+                                <input type="file" accept="image/*" hidden onChange={handleImageUpload} />
                             </label>
 
                             <Mic
                                 size={20}
-                                className="md:w-6 cursor-pointer hover:opacity-70 transition"
+                                className={`cursor-pointer transition ${listening ? "text-primary scale-110" : "hover:text-primary"
+                                    }`}
                                 onClick={startListening}
-                                style={{
-                                    filter: listening ? "brightness(1.5)" : "none"
-                                }}
                             />
 
-                            {input ? <Send
-                                size={20}
-                                className="md:w-6 cursor-pointer hover:opacity-70 transition"
-                                onClick={() => {
-                                    console.log("✅ Send icon clicked");
-                                    console.log("Input value:", input);
-                                    if (input.trim()) {
-                                        onSent(input);
-                                    }
-                                }}
-                            /> : null}
+                            {input && (
+                                <Send
+                                    size={20}
+                                    className="cursor-pointer hover:text-primary transition"
+                                    onClick={() => {
+                                        if (input.trim()) {
+                                            onSent(input);
+                                        }
+                                    }}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
-                <p className="text-xs md:text-sm my-2 md:my-3 text-center font-light text-gray-600 dark:text-gray-400 px-2">
-                    LLM Council may display inaccurate info, including about people, so double-check its response. Your privacy and LLM Council Apps
+
+                <p className="text-xs md:text-sm mt-3 text-center text-base-content/70">
+                    LLM Council may display inaccurate info, including about people, so double-check its response.
                 </p>
             </div>
         </div>

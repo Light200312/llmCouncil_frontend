@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { callOpenRouter } from "../utils/openrouter.js";
 
 export const Context = createContext();
+import { useEffect } from "react";
 
 const ContextProvider = ({ children }) => {
 
@@ -13,6 +14,17 @@ const ContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
   const [image, setImage] = useState(null);
+
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
+
+  useEffect(() => {
+  const valid = ["light","dark","cupcake","forest","dracula"];
+  const applied = valid.includes(theme) ? theme : "light";
+  document.documentElement.setAttribute("data-theme", applied);
+  localStorage.setItem("theme", applied);
+}, [theme]);
 
 
 
@@ -32,7 +44,7 @@ const ContextProvider = ({ children }) => {
     setRecentPrompt(prompt);
 
     try {
-      const reply = await callOpenRouter(prompt,image);
+      const reply = await callOpenRouter(prompt, image);
 
       setResultData("");
       // Split by character instead of word to preserve markdown formatting
@@ -83,6 +95,8 @@ const ContextProvider = ({ children }) => {
     newChat,
     image,
     setImage,
+    theme,
+    setTheme,
 
   };
 
